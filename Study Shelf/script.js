@@ -1,118 +1,324 @@
 document.addEventListener('DOMContentLoaded', () => {
-
-    const bookData = {
-        1: {
+    // --- DATA ---
+    const bookData = [
+        {
+            id: 1,
             title: "Belajar Python untuk Pemula",
-            price: "Rp 80.000",
+            price: 80000,
             imgSrc: "gambar/E-Book BPUP.jpeg",
-            description: "Buku Belajar Python untuk Pemula merupakan panduan praktis bagi siapa pun yang ingin memulai perjalanan dalam dunia pemrograman. Disusun secara sistematis dengan bahasa yang mudah dipahami, buku ini menjelaskan dasar-dasar sintaks, struktur data, hingga pembuatan program sederhana menggunakan Python. Cocok bagi pelajar, mahasiswa, maupun profesional yang ingin memperluas keterampilan di bidang teknologi."
+            description: "Panduan praktis bagi pemula dalam dunia pemrograman Python. Membahas sintaks dasar, struktur data, hingga studi kasus sederhana."
         },
-        2: {
+        {
+            id: 2,
             title: "Manajemen Waktu Efektif",
-            price: "Rp 53.000",
+            price: 53000,
             imgSrc: "gambar/E-Book MWE.jpeg",
-            description: "Buku Manajemen Waktu Efektif membahas strategi dan teknik mengatur waktu secara optimal untuk meningkatkan produktivitas. Pembaca akan diajak memahami pentingnya prioritas, disiplin, serta cara menghindari penundaan pekerjaan. Dengan contoh nyata dan tips aplikatif, buku ini menjadi panduan tepat bagi siapa pun yang ingin mengelola waktu secara profesional dan efisien."
+            description: "Strategi mengatur waktu untuk meningkatkan produktivitas kerja dan keseimbangan hidup."
         },
-        3: {
+        {
+            id: 3,
             title: "Pengantar Akuntansi 1",
-            price: "Rp 68.000",
+            price: 68000,
             imgSrc: "gambar/E-Book PA1.jpeg",
-            description: "Pengantar Akuntansi 1 menyajikan dasar-dasar ilmu akuntansi yang komprehensif, mulai dari konsep laporan keuangan, siklus akuntansi, hingga prinsip-prinsip pencatatan transaksi. Buku ini dirancang khusus untuk mahasiswa ekonomi, bisnis, maupun pembaca umum yang ingin memahami sistem pencatatan keuangan perusahaan secara ilmiah dan terstruktur."
+            description: "Dasar-dasar akuntansi keuangan, siklus akuntansi, dan pelaporan keuangan untuk mahasiswa dan pemula."
         },
-        4: {
+        {
+            id: 4,
             title: "Undang-Undang Cipta Kerja",
-            price: "Rp 71.000",
+            price: 71000,
             imgSrc: "gambar/E-Book UUCK.jpeg",
-            description: "Buku Undang-Undang Cipta Kerja memuat teks resmi beserta penjelasan mendalam mengenai pasal-pasal dalam UU Nomor 11 Tahun 2020. Buku ini dilengkapi analisis terhadap dampak regulasi tersebut pada sektor ketenagakerjaan, investasi, dan usaha kecil menengah. Sangat berguna bagi akademisi, praktisi hukum, pengusaha, dan masyarakat umum untuk memahami dinamika kebijakan ekonomi nasional."
+            description: "Kumpulan regulasi terbaru terkait ketenagakerjaan dan investasi di Indonesia."
         },
-        5: {
-            title: "Prinsip Dasar Desain Komunikasi Visual",
-            price: "Rp 64.000",
+        {
+            id: 5,
+            title: "Prinsip Dasar DKV",
+            price: 64000,
             imgSrc: "gambar/E-Book PDDKV.jpeg",
-            description: "Buku Prinsip Dasar Desain Komunikasi Visual menjelaskan konsep fundamental dalam dunia desain grafis, termasuk elemen, prinsip estetika, tipografi, warna, dan tata letak. Ditulis dengan pendekatan teoritis sekaligus aplikatif, buku ini membantu pembaca memahami bagaimana visual dapat digunakan secara efektif untuk menyampaikan pesan secara kreatif dan komunikatif."
+            description: "Teori dan praktik dasar Desain Komunikasi Visual untuk desainer grafis pemula."
         },
-        6: {
+        {
+            id: 6,
             title: "Atomic Habits",
-            price: "Rp 80.000",
+            price: 80000,
             imgSrc: "gambar/E-Book AtomicHabit.jpeg",
-            description: "Atomic Habits karya James Clear membahas cara membangun kebiasaan kecil yang menghasilkan perubahan besar dalam hidup. Buku ini menekankan pentingnya sistem, bukan sekadar tujuan, dalam mencapai kesuksesan jangka panjang. Dengan contoh nyata dan pendekatan ilmiah, buku ini menjadi bacaan inspiratif bagi siapa pun yang ingin memperbaiki diri secara konsisten."
+            description: "Perubahan kecil yang memberikan hasil luar biasa. Membangun kebiasaan baik dan menghilangkan kebiasaan buruk."
         },
-        7: {
+        {
+            id: 7,
             title: "Cara Budidaya Ikan Lele",
-            price: "Rp 50.000",
+            price: 50000,
             imgSrc: "gambar/E-Book CBIL.jpeg",
-            description: "Buku Cara Budidaya Ikan Lele menyajikan panduan lengkap mengenai teknik pembenihan, perawatan, pemberian pakan, hingga strategi pemasaran ikan lele. Disusun berdasarkan praktik lapangan dan pengetahuan agribisnis, buku ini sangat bermanfaat bagi petani ikan, pelaku usaha kecil, maupun masyarakat yang ingin memulai usaha budidaya perikanan air tawar."
+            description: "Panduan lengkap budidaya lele dari persiapan kolam hingga panen dan pemasaran."
         },
-        8: {
+        {
+            id: 8,
             title: "Mother Nature Laugh Last",
-            price: "Rp 40.000",
+            price: 45000,
             imgSrc: "gambar/E-Book MNLL.jpeg",
-            description: "Mother Nature Laugh Last merupakan buku inspiratif yang menyoroti hubungan manusia dengan alam serta konsekuensi dari eksploitasi berlebihan terhadap lingkungan. Melalui narasi yang kuat dan reflektif, penulis mengajak pembaca untuk memahami pentingnya menjaga keseimbangan ekosistem demi keberlanjutan bumi. Cocok bagi pecinta lingkungan dan pembaca yang peduli terhadap isu ekologi."
+            description: "Refleksi tentang hubungan manusia dengan alam semesta dan lingkungan hidup."
         },
-        9: {
+        {
+            id: 9,
             title: "Mahir UI/UX Design",
-            price: "Rp 55.000",
+            price: 55000,
             imgSrc: "gambar/E-Book MUUD.jpeg",
-            description: "Buku Mahir UI/UX Design membahas prinsip dan praktik terbaik dalam merancang antarmuka pengguna (UI) dan pengalaman pengguna (UX) yang efektif. Disertai studi kasus dan ilustrasi menarik, buku ini membantu pembaca memahami alur desain digital mulai dari riset pengguna, pembuatan prototipe, hingga evaluasi. Sangat sesuai untuk desainer pemula maupun profesional di bidang teknologi."
+            description: "Belajar mendesain antarmuka dan pengalaman pengguna aplikasi mobile dan web."
         },
-        10: {
+        {
+            id: 10,
             title: "The Psychology of Money",
-            price: "Rp 75.000",
+            price: 75000,
             imgSrc: "gambar/E-Book TPOM.jpeg",
-            description: "The Psychology of Money karya Morgan Housel mengeksplorasi hubungan antara perilaku manusia dan keputusan finansial. Buku ini menjelaskan bahwa kecerdasan finansial tidak hanya bergantung pada pengetahuan ekonomi, tetapi juga pada emosi dan kebiasaan seseorang. Sebuah bacaan reflektif bagi siapa pun yang ingin mengelola uang dengan lebih bijak dan rasional."
+            description: "Pelajaran abadi mengenai kekayaan, ketamakan, dan kebahagiaan finansial."
         },
-        11: {
+        {
+            id: 11,
             title: "Ngomongin Uang",
-            price: "Rp 53.000",
+            price: 53000,
             imgSrc: "gambar/E-Book Uang.jpeg",
-            description: "Buku Ngomongin Uang membahas konsep dasar keuangan pribadi dengan gaya bahasa yang ringan namun informatif. Melalui pendekatan yang mudah dipahami, penulis membantu pembaca memahami cara mengatur pengeluaran, menabung, dan berinvestasi dengan bijak. Cocok untuk generasi muda yang ingin membangun kesadaran finansial sejak dini."
+            description: "Buku finansial untuk milenial yang ingin melek finansial dan investasi."
         },
-        12: {
+        {
+            id: 12,
             title: "Jejak Balak",
-            price: "Rp 60.000",
+            price: 60000,
             imgSrc: "gambar/E-Book JejakBalak.jpeg",
-            description: "Jejak Balak merupakan karya sastra yang mengangkat tema kehidupan sosial, perjuangan, dan makna keadilan dalam konteks budaya lokal. Melalui alur cerita yang kuat dan karakter yang mendalam, buku ini menggambarkan realitas masyarakat dengan gaya bahasa yang estetis dan reflektif. Bacaan ini memberikan pengalaman emosional sekaligus pemahaman tentang nilai kemanusiaan."
+            description: "Novel petualangan yang penuh dengan teka-teki dan misteri."
         }
-    };
+    ];
 
-    const modal = document.getElementById('modal-detail');
+    // --- STATE ---
+    let cart = JSON.parse(localStorage.getItem('studyShelfCart')) || [];
+
+    // --- DOM ELEMENTS ---
+    const productList = document.getElementById('product-list');
+    const cartBtn = document.getElementById('cart-btn');
+    const cartSidebar = document.getElementById('cart-sidebar');
+    const closeCartBtn = document.getElementById('close-cart');
+    const overlay = document.getElementById('overlay');
+    const cartItemsContainer = document.getElementById('cart-items');
+    const cartTotalElement = document.getElementById('cart-total');
+    const cartCountElement = document.getElementById('cart-count');
+    const checkoutBtn = document.getElementById('checkout-btn');
+    const menuBtn = document.getElementById('menu-btn');
+    const navbar = document.querySelector('.navbar');
+    
+    // Modal Elements
+    const modal = document.getElementById('product-modal');
+    const closeModalBtn = document.getElementById('close-modal');
     const modalImg = document.getElementById('modal-img');
     const modalTitle = document.getElementById('modal-title');
     const modalPrice = document.getElementById('modal-price');
     const modalDesc = document.getElementById('modal-desc');
-    const closeModalButton = document.querySelector('.modal-close');
-    const bookCards = document.querySelectorAll('.ebook-card');
+    const modalAddBtn = document.getElementById('modal-add-btn');
 
-    function openModal(bookId) {
-        const book = bookData[bookId];
+    // --- FUNCTIONS ---
 
+    // Format Currency
+    const formatRupiah = (number) => {
+        return new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR',
+            minimumFractionDigits: 0
+        }).format(number);
+    };
+
+    // Render Products
+    const renderProducts = () => {
+        productList.innerHTML = bookData.map(book => `
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="${book.imgSrc}" alt="${book.title}">
+                    <div class="product-overlay">
+                        <button class="view-btn" onclick="openDetailModal(${book.id})">Lihat Detail</button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">${book.title}</h3>
+                    <div class="product-price">${formatRupiah(book.price)}</div>
+                    <button class="add-to-cart-btn" onclick="addToCart(${book.id})">
+                        <i class="fa-solid fa-cart-plus"></i> Tambah
+                    </button>
+                </div>
+            </div>
+        `).join('');
+    };
+
+    // Render Cart
+    const renderCart = () => {
+        cartCountElement.textContent = cart.reduce((acc, item) => acc + item.qty, 0);
+        
+        if (cart.length === 0) {
+            cartItemsContainer.innerHTML = '<div class="empty-cart-msg">Keranjang Anda masih kosong.</div>';
+            cartTotalElement.textContent = formatRupiah(0);
+            return;
+        }
+
+        let total = 0;
+        cartItemsContainer.innerHTML = cart.map(item => {
+            const book = bookData.find(b => b.id === item.id);
+            const itemTotal = book.price * item.qty;
+            total += itemTotal;
+
+            return `
+                <div class="cart-item">
+                    <img src="${book.imgSrc}" alt="${book.title}">
+                    <div class="item-details">
+                        <h4>${book.title}</h4>
+                        <div class="item-price">${formatRupiah(book.price)}</div>
+                        <div class="item-quantity">
+                            <div class="qty-btn" onclick="updateQuantity(${item.id}, -1)">-</div>
+                            <span>${item.qty}</span>
+                            <div class="qty-btn" onclick="updateQuantity(${item.id}, 1)">+</div>
+                        </div>
+                    </div>
+                    <div class="item-remove" onclick="removeFromCart(${item.id})">
+                        <i class="fa-solid fa-trash"></i>
+                    </div>
+                </div>
+            `;
+        }).join('');
+
+        cartTotalElement.textContent = formatRupiah(total);
+        localStorage.setItem('studyShelfCart', JSON.stringify(cart));
+    };
+
+    // Add to Cart
+    window.addToCart = (id) => {
+        const existingItem = cart.find(item => item.id === id);
+        if (existingItem) {
+            existingItem.qty++;
+        } else {
+            cart.push({ id: id, qty: 1 });
+        }
+        renderCart();
+        openCart();
+        
+        // Optional: Show toast notification
+        // alert('Produk berhasil ditambahkan!');
+    };
+
+    // Update Quantity
+    window.updateQuantity = (id, change) => {
+        const item = cart.find(item => item.id === id);
+        if (item) {
+            item.qty += change;
+            if (item.qty <= 0) {
+                removeFromCart(id);
+            } else {
+                renderCart();
+            }
+        }
+    };
+
+    // Remove from Cart
+    window.removeFromCart = (id) => {
+        cart = cart.filter(item => item.id !== id);
+        renderCart();
+    };
+
+    // Open/Close Cart
+    const openCart = () => {
+        cartSidebar.classList.add('active');
+        overlay.classList.add('active');
+    };
+
+    const closeCart = () => {
+        cartSidebar.classList.remove('active');
+        overlay.classList.remove('active');
+    };
+
+    // Open Detail Modal
+    window.openDetailModal = (id) => {
+        const book = bookData.find(b => b.id === id);
         if (book) {
             modalImg.src = book.imgSrc;
-            modalTitle.innerText = book.title;
-            modalPrice.innerText = book.price;
-            modalDesc.innerText = book.description;
+            modalTitle.textContent = book.title;
+            modalPrice.textContent = formatRupiah(book.price);
+            modalDesc.textContent = book.description;
+            
+            // Update Add Button in Modal to use current ID
+            modalAddBtn.onclick = () => {
+                addToCart(book.id);
+                closeModal();
+            };
 
-            modal.style.display = 'flex';
+            modal.classList.add('active');
         }
-    }
+    };
 
-    function closeModal() {
-        modal.style.display = 'none';
-    }
+    const closeModal = () => {
+        modal.classList.remove('active');
+    };
 
-    bookCards.forEach(card => {
-        card.addEventListener('click', () => {
-            const bookId = card.dataset.id;
-            openModal(bookId);
+    // --- EVENT LISTENERS ---
+    
+    cartBtn.addEventListener('click', openCart);
+    closeCartBtn.addEventListener('click', closeCart);
+    overlay.addEventListener('click', () => {
+        closeCart();
+        closeModal(); // Also close modal if overlay clicked
+    });
+
+    closeModalBtn.addEventListener('click', closeModal);
+    
+    // Close modal when clicking outside content
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+
+    // Mobile Menu
+    menuBtn.addEventListener('click', () => {
+        navbar.classList.toggle('active');
+    });
+
+    // Smooth Scroll for Anchor Links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            navbar.classList.remove('active'); // Close menu on click
+            
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                // Adjust for sticky header
+                const headerOffset = 80;
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            }
         });
     });
 
-    closeModalButton.addEventListener('click', closeModal);
-
-    modal.addEventListener('click', (event) => {
-        if (event.target === modal) {
-            closeModal();
+    // Checkout
+    checkoutBtn.addEventListener('click', () => {
+        if (cart.length === 0) {
+            alert('Keranjang Anda kosong!');
+            return;
         }
+        const total = cartTotalElement.textContent;
+        const message = `Halo Admin Study Shelf, saya ingin memesan e-book berikut:\n\n${cart.map(item => {
+            const book = bookData.find(b => b.id === item.id);
+            return `- ${book.title} (${item.qty}x)`;
+        }).join('\n')}\n\nTotal: ${total}`;
+        
+        // Open WhatsApp (Mockup)
+        // window.open(`https://wa.me/6281234567890?text=${encodeURIComponent(message)}`, '_blank');
+        
+        alert('Terima kasih! Pesanan Anda akan diproses via WhatsApp.\n\n' + message);
+        cart = [];
+        renderCart();
+        closeCart();
+        localStorage.removeItem('studyShelfCart');
     });
 
+    // --- INITIALIZATION ---
+    renderProducts();
+    renderCart();
 });
