@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="gambar/Logo Study Shelf.png">
     <title>Study Shelf - E-Book Store</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -11,27 +10,30 @@
 </head>
 <body>
 
-    <!-- HEADER -->
     <header id="header">
         <div class="container header-container">
             <a href="#" class="logo">
-                <img src="gambar/Logo SS Study Shelf.png" alt="Study Shelf Logo">
+                <img src="gambar/Logo SS Study Shelf.png" alt="Logo Study Shelf">
             </a>
             
             <nav class="navbar">
                 <ul>
                     <li><a href="#beranda">Beranda</a></li>
                     <li><a href="#koleksi">Koleksi</a></li>
-                    <li><a href="#fitur">Fitur</a></li>
-                    <li><a href="#tentang">Tentang</a></li>
+                    <li><a href="#fitur">Fitur</a></li> <li><a href="#tentang">Tentang</a></li>
                 </ul>
             </nav>
 
             <div class="header-icons">
-                <div class="cart-icon" id="cart-btn">
+                <div class="claim-icon" id="nav-claim-btn" title="Klaim E-Book (Token)">
+                    <i class="fa-solid fa-ticket"></i>
+                </div>
+
+                <div class="cart-icon" id="cart-btn" title="Keranjang Belanja">
                     <i class="fa-solid fa-cart-shopping"></i>
                     <span id="cart-count">0</span>
                 </div>
+                
                 <div class="menu-icon" id="menu-btn">
                     <i class="fa-solid fa-bars"></i>
                 </div>
@@ -39,7 +41,6 @@
         </div>
     </header>
 
-    <!-- BERANDA / HERO -->
     <section id="beranda" class="hero">
         <div class="hero-overlay"></div>
         <div class="container hero-content">
@@ -49,21 +50,34 @@
         </div>
     </section>
 
-    <!-- KOLEKSI EBOOK -->
     <section id="koleksi" class="products section-padding">
         <div class="container">
             <h2 class="section-title">Koleksi <span>Terpopuler</span></h2>
             <p class="section-subtitle">Pilih buku favoritmu dan mulai membaca hari ini</p>
             
+            <div class="filter-container">
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Cari judul buku...">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <div class="category-filter" id="category-btns">
+                    <button class="filter-btn active" data-category="all">Semua</button>
+                    <button class="filter-btn" data-category="teknologi">Teknologi</button>
+                    <button class="filter-btn" data-category="bisnis">Bisnis</button>
+                    <button class="filter-btn" data-category="pengembangan">Pengembangan Diri</button>
+                    <button class="filter-btn" data-category="lainnya">Lainnya</button>
+                </div>
+            </div>
             
             <div class="product-grid" id="product-list">
-            </div>
+                </div>
         </div>
     </section>
 
-    <!-- FITUR -->
     <section id="fitur" class="features">
         <div class="container">
+            <h2 class="section-title">Fitur <span>Unggulan</span></h2>
+            <p class="section-subtitle">Kenapa harus belanja di Study Shelf?</p>
             <div class="feature-grid">
                 <div class="feature-item">
                     <div class="icon-box"><i class="fa-solid fa-book-open"></i></div>
@@ -84,9 +98,11 @@
         </div>
     </section>
 
-    <!-- TENTANG KAMI -->
     <section id="tentang" class="about section-padding">
         <div class="container about-container">
+            <div class="about-image">
+                <img src="gambar/Rak Buku.jpeg" alt="Tentang Study Shelf">
+            </div>
             <div class="about-text">
                 <h2>Tentang <span>Study Shelf</span></h2>
                 <p>Study Shelf hadir sebagai solusi bagi pelajar, mahasiswa, dan profesional yang membutuhkan referensi berkualitas dengan harga terjangkau. Kami percaya bahwa akses terhadap ilmu pengetahuan harus mudah dan murah.</p>
@@ -96,17 +112,14 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer id="kontak">
         <div class="container footer-container">
             <div class="footer-col">
                 <h3>Study Shelf</h3>
                 <p>Platform e-book terpercaya untuk masa depan yang lebih cerah.</p>
                 <div class="social-links">
-                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
                     <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
                 </div>
             </div>
             <div class="footer-col">
@@ -120,7 +133,7 @@
             <div class="footer-col">
                 <h3>Kontak</h3>
                 <ul>
-                    <li><i class="fa-solid fa-envelope"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f0838580809f8284b083848594898398959c96de939f9d">[email&#160;protected]</a></li>
+                    <li><i class="fa-solid fa-envelope"></i> admin@studyshelf.com</li>
                     <li><i class="fa-solid fa-phone"></i> +62 812 3456 7890</li>
                     <li><i class="fa-solid fa-location-dot"></i> Jakarta, Indonesia</li>
                 </ul>
@@ -131,27 +144,24 @@
         </div>
     </footer>
 
-    <!-- SHOPPING CART SIDEBAR -->
     <div class="cart-sidebar" id="cart-sidebar">
         <div class="cart-header">
             <h3>Keranjang Belanja</h3>
             <div class="close-cart" id="close-cart"><i class="fa-solid fa-xmark"></i></div>
         </div>
-        <div class="cart-content" id="cart-items">
-            <!-- Cart items will be injected here -->
-            <div class="empty-cart-msg">Keranjang Anda masih kosong.</div>
-        </div>
+        <div class="cart-content" id="cart-items"></div>
         <div class="cart-footer">
             <div class="total">
                 <span>Total:</span>
                 <span id="cart-total">Rp 0</span>
             </div>
-            <button class="btn btn-primary btn-block" id="checkout-btn">Checkout Sekarang</button>
+            <button class="btn btn-primary btn-block" id="checkout-btn">
+                <i class="fa-brands fa-whatsapp"></i> Checkout via WhatsApp
+            </button>
         </div>
     </div>
     <div class="overlay" id="overlay"></div>
 
-    <!-- PRODUCT DETAIL MODAL -->
     <div class="modal" id="product-modal">
         <div class="modal-content">
             <span class="close-modal" id="close-modal">&times;</span>
@@ -176,6 +186,28 @@
         </div>
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
+    <div class="modal" id="claim-modal">
+        <div class="modal-content" style="max-width: 500px;">
+            <span class="close-modal" id="close-claim">&times;</span>
+            <div class="modal-body" style="flex-direction: column; align-items: center; text-align: center; padding: 3rem;">
+                <h2 style="margin-bottom: 1rem; color: var(--text-dark);">Klaim E-Book</h2>
+                <p style="margin-bottom: 2rem; color: var(--text-gray);">Masukkan kode token yang Anda terima dari WhatsApp Admin setelah pembayaran.</p>
+                
+                <div class="search-box" style="width: 100%; margin-bottom: 1.5rem;">
+                    <input type="text" id="token-input" placeholder="Masukkan Token" style="text-align: center; padding-right: 20px;">
+                </div>
+                
+                <button class="btn btn-primary btn-block" onclick="checkToken()">
+                    <i class="fa-solid fa-download"></i> Download Sekarang
+                </button>
+                
+                <p id="claim-msg" style="margin-top: 15px; font-weight: 600; font-size: 0.9rem;"></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast-container"></div>
+
+    <script src="script.js"></script>
 </body>
 </html>

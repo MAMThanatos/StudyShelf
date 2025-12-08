@@ -10,6 +10,7 @@
     --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     --transition: all 0.3s ease;
+    --header-height: 80px;
 }
 
 * {
@@ -24,6 +25,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: var(--header-height);
 }
 
 body {
@@ -112,26 +114,28 @@ header {
     top: 0;
     z-index: 1000;
     box-shadow: var(--shadow);
-    padding: 1rem 0;
+    padding: 0;
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
 }
 
 .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
 }
 
 .logo {
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--primary-color);
 }
 
 .logo img {
-    height: 40px;
+    height: 45px;
+    width: auto;
+    object-fit: contain;
 }
 
 .navbar ul {
@@ -168,7 +172,23 @@ header {
 .header-icons {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1.5rem; /* Jarak antar icon */
+}
+
+/* Claim Icon Style (NEW) */
+.claim-icon {
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: var(--text-dark);
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.claim-icon:hover {
+    color: var(--secondary-color);
+    transform: rotate(-15deg);
 }
 
 .cart-icon {
@@ -214,8 +234,6 @@ header {
     position: relative;
     display: flex;
     align-items: center;
-    margin-top: -76px;
-    margin-top: 0;
 }
 
 .hero-overlay {
@@ -249,6 +267,70 @@ header {
     font-size: 1.2rem;
     margin-bottom: 2rem;
     opacity: 0.9;
+}
+
+/* --- SEARCH & FILTER --- */
+.filter-container {
+    margin-bottom: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.search-box {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px 20px;
+    padding-right: 45px;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    font-size: 1rem;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+
+.search-box input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.search-box i {
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-gray);
+    pointer-events: none;
+}
+
+.category-filter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.filter-btn {
+    padding: 8px 20px;
+    border: 1px solid #ddd;
+    background: var(--white);
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: var(--transition);
+    color: var(--text-gray);
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-color: var(--primary-color);
 }
 
 /* --- FEATURES --- */
@@ -339,6 +421,29 @@ header {
 
 .product-card:hover .product-img img {
     transform: scale(1.1);
+}
+
+/* BADGES */
+.product-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: var(--secondary-color);
+    color: var(--white);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    z-index: 5;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.product-badge.new {
+    background-color: #10b981;
+}
+
+.product-badge.hot {
+    background-color: #ef4444;
 }
 
 .product-overlay {
@@ -688,14 +793,14 @@ footer {
     color: var(--text-dark);
 }
 
-/* --- MODAL --- */
+/* --- MODAL (PERBAIKAN TAMPILAN) --- */
 .modal {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.6);
     z-index: 2000;
     display: flex;
     justify-content: center;
@@ -704,6 +809,7 @@ footer {
     visibility: hidden;
     transition: var(--transition);
     padding: 1rem;
+    backdrop-filter: blur(5px);
 }
 
 .modal.active {
@@ -711,13 +817,18 @@ footer {
     visibility: visible;
 }
 
+/* Container Modal */
 .modal-content {
     background-color: var(--white);
     width: 100%;
-    max-width: 900px;
+    max-width: 800px; 
+    max-height: 90vh; /* Tinggi maksimal 90% layar */
     border-radius: 12px;
     position: relative;
-    overflow: hidden;
+    overflow-y: auto; /* Scroll jika konten panjang */
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     animation: zoomIn 0.3s ease;
 }
 
@@ -729,11 +840,20 @@ footer {
     cursor: pointer;
     color: var(--text-gray);
     z-index: 10;
+    background: rgba(255,255,255,0.8);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     transition: var(--transition);
 }
 
 .close-modal:hover {
-    color: var(--text-dark);
+    color: #ef4444;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .modal-body {
@@ -741,46 +861,95 @@ footer {
     flex-direction: column;
 }
 
+/* Area Gambar */
 .modal-img-wrapper {
-    height: 300px;
-    overflow: hidden;
+    width: 100%;
+    height: auto;
+    background-color: #f3f4f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
 }
 
+/* PENTING: Membatasi ukuran gambar */
 .modal-img-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    width: auto;
+    max-width: 100%;
+    max-height: 250px; /* Batas tinggi di HP */
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 .modal-info {
     padding: 2rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .modal-info h2 {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     margin-bottom: 0.5rem;
+    line-height: 1.3;
 }
 
 .modal-info h3 {
     color: var(--primary-color);
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
 }
 
 .modal-desc-box {
-    background-color: #f9fafb;
-    padding: 1.5rem;
+    background-color: #f8fafc;
+    padding: 1rem;
     border-radius: 8px;
     margin-bottom: 1.5rem;
+    border: 1px solid #e2e8f0;
 }
 
 .modal-desc-box h4 {
+    font-size: 0.9rem;
     margin-bottom: 0.5rem;
+    color: var(--text-dark);
 }
 
 .modal-desc-box p {
     color: var(--text-gray);
     line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+/* --- TOAST NOTIFICATIONS --- */
+#toast-container {
+    position: fixed;
+    top: 90px;
+    right: 20px;
+    z-index: 3000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.toast {
+    background-color: var(--white);
+    color: var(--text-dark);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-left: 5px solid var(--primary-color);
+    animation: slideInRight 0.3s ease, fadeOut 0.5s 2.5s forwards;
+    min-width: 250px;
+}
+
+.toast i {
+    color: var(--primary-color);
+    font-size: 1.2rem;
 }
 
 /* --- ANIMATIONS --- */
@@ -794,23 +963,47 @@ footer {
     to { opacity: 1; transform: scale(1); }
 }
 
+@keyframes slideInRight {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeOut {
+    to { opacity: 0; visibility: hidden; }
+}
+
 /* --- RESPONSIVE --- */
+/* Desktop Style untuk Modal */
 @media (min-width: 768px) {
     .modal-body {
-        flex-direction: row;
+        flex-direction: row; /* Gambar kiri, Teks kanan */
+        min-height: 400px;
     }
     
     .modal-img-wrapper {
         flex: 1;
         height: auto;
+        background-color: #f1f5f9;
+        padding: 2rem;
+    }
+
+    /* Batas tinggi gambar di Desktop */
+    .modal-img-wrapper img {
+        max-height: 400px;
     }
     
     .modal-info {
         flex: 1.5;
         padding: 3rem;
+        justify-content: center;
+    }
+
+    .modal-content {
+        overflow: hidden;
     }
 }
 
+/* Mobile Navigation Fix */
 @media (max-width: 768px) {
     .navbar {
         position: absolute;
