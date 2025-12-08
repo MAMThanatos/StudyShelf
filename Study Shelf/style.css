@@ -1,8 +1,8 @@
 /* --- VARIABLES & RESET --- */
 :root {
-    --primary-color: #2563eb; /* Modern Blue */
+    --primary-color: #2563eb; 
     --primary-dark: #1e40af;
-    --secondary-color: #f59e0b; /* Amber for accents */
+    --secondary-color: #f59e0b;
     --text-dark: #1f2937;
     --text-gray: #6b7280;
     --bg-light: #f3f4f6;
@@ -214,7 +214,7 @@ header {
     position: relative;
     display: flex;
     align-items: center;
-    margin-top: -76px; /* Pull up behind transparent header if needed, but header is sticky white now */
+    margin-top: -76px;
     margin-top: 0;
 }
 
@@ -254,7 +254,6 @@ header {
 /* --- FEATURES --- */
 .features {
     background-color: var(--white);
-    /* Removed negative margin since it's now below products */
     position: relative;
     z-index: 10;
     padding: 4rem 0;
