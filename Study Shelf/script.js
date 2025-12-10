@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- 1. DATABASE TOKEN (SISTEM KLAIM EBOOK) ---
-    // Format: "KODE TOKEN": "LOKASI FILE PDF"
-    // PENTING: Anda harus membuat folder 'files' dan isi dengan file PDF sesuai nama di bawah
+    // --- 1. DATABASE TOKEN & PRODUK ---
     const tokenDatabase = {
         "PYTHON-VIP": "files/ebook-python.pdf", 
         "WAKTU-EMAS": "files/ebook-manajemen-waktu.pdf",
@@ -18,126 +16,25 @@ document.addEventListener('DOMContentLoaded', () => {
         "NOVEL-JEJAK": "files/ebook-jejak-balak.pdf"
     };
 
-    // --- 2. DATA PRODUK ---
+    // Tambahan Field Rating (4.0 - 5.0)
     const bookData = [
-        {
-            id: 1,
-            title: "Belajar Python untuk Pemula",
-            price: 80000,
-            category: "teknologi",
-            badge: "Best Seller",
-            badgeType: "hot",
-            imgSrc: "gambar/E-Book BPUP.jpeg",
-            description: "Panduan praktis bagi pemula dalam dunia pemrograman Python. Membahas sintaks dasar, struktur data, hingga studi kasus sederhana."
-        },
-        {
-            id: 2,
-            title: "Manajemen Waktu Efektif",
-            price: 53000,
-            category: "pengembangan",
-            badge: null,
-            imgSrc: "gambar/E-Book MWE.jpeg",
-            description: "Strategi mengatur waktu untuk meningkatkan produktivitas kerja dan keseimbangan hidup."
-        },
-        {
-            id: 3,
-            title: "Pengantar Akuntansi 1",
-            price: 68000,
-            category: "bisnis",
-            badge: "New",
-            badgeType: "new",
-            imgSrc: "gambar/E-Book PA1.jpeg",
-            description: "Dasar-dasar akuntansi keuangan, siklus akuntansi, dan pelaporan keuangan untuk mahasiswa dan pemula."
-        },
-        {
-            id: 4,
-            title: "Undang-Undang Cipta Kerja",
-            price: 71000,
-            category: "lainnya",
-            badge: null,
-            imgSrc: "gambar/E-Book UUCK.jpeg",
-            description: "Kumpulan regulasi terbaru terkait ketenagakerjaan dan investasi di Indonesia."
-        },
-        {
-            id: 5,
-            title: "Prinsip Dasar DKV",
-            price: 64000,
-            category: "teknologi",
-            badge: null,
-            imgSrc: "gambar/E-Book PDDKV.jpeg",
-            description: "Teori dan praktik dasar Desain Komunikasi Visual untuk desainer grafis pemula."
-        },
-        {
-            id: 6,
-            title: "Atomic Habits",
-            price: 80000,
-            category: "pengembangan",
-            badge: "Wajib Baca",
-            badgeType: "hot",
-            imgSrc: "gambar/E-Book AtomicHabit.jpeg",
-            description: "Perubahan kecil yang memberikan hasil luar biasa. Membangun kebiasaan baik dan menghilangkan kebiasaan buruk."
-        },
-        {
-            id: 7,
-            title: "Cara Budidaya Ikan Lele",
-            price: 50000,
-            category: "bisnis",
-            badge: null,
-            imgSrc: "gambar/E-Book CBIL.jpeg",
-            description: "Panduan lengkap budidaya lele dari persiapan kolam hingga panen dan pemasaran."
-        },
-        {
-            id: 8,
-            title: "Mother Nature Laugh Last",
-            price: 45000,
-            category: "lainnya",
-            badge: null,
-            imgSrc: "gambar/E-Book MNLL.jpeg",
-            description: "Refleksi tentang hubungan manusia dengan alam semesta dan lingkungan hidup."
-        },
-        {
-            id: 9,
-            title: "Mahir UI/UX Design",
-            price: 55000,
-            category: "teknologi",
-            badge: "Populer",
-            badgeType: "hot",
-            imgSrc: "gambar/E-Book MUUD.jpeg",
-            description: "Belajar mendesain antarmuka dan pengalaman pengguna aplikasi mobile dan web."
-        },
-        {
-            id: 10,
-            title: "The Psychology of Money",
-            price: 75000,
-            category: "bisnis",
-            badge: "Best Seller",
-            badgeType: "hot",
-            imgSrc: "gambar/E-Book TPOM.jpeg",
-            description: "Pelajaran abadi mengenai kekayaan, ketamakan, dan kebahagiaan finansial."
-        },
-        {
-            id: 11,
-            title: "Ngomongin Uang",
-            price: 53000,
-            category: "bisnis",
-            badge: null,
-            imgSrc: "gambar/E-Book Uang.jpeg",
-            description: "Buku finansial untuk milenial yang ingin melek finansial dan investasi."
-        },
-        {
-            id: 12,
-            title: "Jejak Balak",
-            price: 60000,
-            category: "lainnya",
-            badge: "New",
-            badgeType: "new",
-            imgSrc: "gambar/E-Book JejakBalak.jpeg",
-            description: "Novel petualangan yang penuh dengan teka-teki dan misteri."
-        }
+        { id: 1, title: "Belajar Python untuk Pemula", price: 80000, category: "teknologi", badge: "Best Seller", badgeType: "hot", rating: 4.8, imgSrc: "gambar/E-Book BPUP.jpeg", description: "Panduan praktis bagi pemula dalam dunia pemrograman Python." },
+        { id: 2, title: "Manajemen Waktu Efektif", price: 53000, category: "pengembangan", badge: null, rating: 4.5, imgSrc: "gambar/E-Book MWE.jpeg", description: "Strategi mengatur waktu untuk meningkatkan produktivitas." },
+        { id: 3, title: "Pengantar Akuntansi 1", price: 68000, category: "bisnis", badge: "New", badgeType: "new", rating: 4.7, imgSrc: "gambar/E-Book PA1.jpeg", description: "Dasar-dasar akuntansi keuangan dan pelaporan." },
+        { id: 4, title: "Undang-Undang Cipta Kerja", price: 71000, category: "lainnya", badge: null, rating: 4.2, imgSrc: "gambar/E-Book UUCK.jpeg", description: "Kumpulan regulasi terbaru ketenagakerjaan." },
+        { id: 5, title: "Prinsip Dasar DKV", price: 64000, category: "teknologi", badge: null, rating: 4.6, imgSrc: "gambar/E-Book PDDKV.jpeg", description: "Teori dan praktik dasar Desain Komunikasi Visual." },
+        { id: 6, title: "Atomic Habits", price: 80000, category: "pengembangan", badge: "Wajib Baca", badgeType: "hot", rating: 4.9, imgSrc: "gambar/E-Book AtomicHabit.jpeg", description: "Membangun kebiasaan baik dan menghilangkan kebiasaan buruk." },
+        { id: 7, title: "Cara Budidaya Ikan Lele", price: 50000, category: "bisnis", badge: null, rating: 4.4, imgSrc: "gambar/E-Book CBIL.jpeg", description: "Panduan lengkap budidaya lele dari persiapan hingga panen." },
+        { id: 8, title: "Mother Nature Laugh Last", price: 45000, category: "lainnya", badge: null, rating: 4.3, imgSrc: "gambar/E-Book MNLL.jpeg", description: "Refleksi tentang hubungan manusia dengan alam semesta." },
+        { id: 9, title: "Mahir UI/UX Design", price: 55000, category: "teknologi", badge: "Populer", badgeType: "hot", rating: 4.8, imgSrc: "gambar/E-Book MUUD.jpeg", description: "Belajar mendesain antarmuka aplikasi mobile dan web." },
+        { id: 10, title: "The Psychology of Money", price: 75000, category: "bisnis", badge: "Best Seller", badgeType: "hot", rating: 4.9, imgSrc: "gambar/E-Book TPOM.jpeg", description: "Pelajaran abadi mengenai kekayaan dan kebahagiaan finansial." },
+        { id: 11, title: "Ngomongin Uang", price: 53000, category: "bisnis", badge: null, rating: 4.7, imgSrc: "gambar/E-Book Uang.jpeg", description: "Buku finansial untuk milenial yang ingin melek investasi." },
+        { id: 12, title: "Jejak Balak", price: 60000, category: "lainnya", badge: "New", badgeType: "new", rating: 4.6, imgSrc: "gambar/E-Book JejakBalak.jpeg", description: "Novel petualangan yang penuh dengan teka-teki." }
     ];
 
     // --- STATE ---
     let cart = JSON.parse(localStorage.getItem('studyShelfCart')) || [];
+    let isDarkMode = localStorage.getItem('studyShelfTheme') === 'dark';
 
     // --- DOM ELEMENTS ---
     const productList = document.getElementById('product-list');
@@ -152,29 +49,52 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuBtn = document.getElementById('menu-btn');
     const navbar = document.querySelector('.navbar');
     
-    // Search & Filter Elements
+    // Search & Filter
     const searchInput = document.getElementById('search-input');
     const filterBtns = document.querySelectorAll('.filter-btn');
     
-    // Modal Product Elements
+    // Modal Product
     const modal = document.getElementById('product-modal');
     const closeModalBtn = document.getElementById('close-modal');
     const modalImg = document.getElementById('modal-img');
     const modalTitle = document.getElementById('modal-title');
     const modalPrice = document.getElementById('modal-price');
     const modalDesc = document.getElementById('modal-desc');
+    const modalRating = document.getElementById('modal-rating-val'); // Baru
     const modalAddBtn = document.getElementById('modal-add-btn');
 
-    // Modal Claim (BARU)
+    // Modal Claim
     const navClaimBtn = document.getElementById('nav-claim-btn');
     const claimModal = document.getElementById('claim-modal');
-    const closeClaimBtn = document.getElementById('close-claim'); // Pastikan ID ini ada di HTML modal klaim
+    const closeClaimBtn = document.getElementById('close-claim');
     const tokenInput = document.getElementById('token-input');
     const claimMsg = document.getElementById('claim-msg');
 
+    // Theme Toggle
+    const themeBtn = document.getElementById('theme-btn');
+    const themeIcon = themeBtn.querySelector('i');
+
     // --- FUNCTIONS ---
 
-    // Format Currency
+    // 1. Dark Mode Logic
+    const updateTheme = () => {
+        if (isDarkMode) {
+            document.body.classList.add('dark-mode');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+        } else {
+            document.body.classList.remove('dark-mode');
+            themeIcon.classList.replace('fa-sun', 'fa-moon');
+        }
+    };
+    updateTheme(); // Init run
+
+    themeBtn.addEventListener('click', () => {
+        isDarkMode = !isDarkMode;
+        localStorage.setItem('studyShelfTheme', isDarkMode ? 'dark' : 'light');
+        updateTheme();
+    });
+
+    // 2. Format Currency
     const formatRupiah = (number) => {
         return new Intl.NumberFormat('id-ID', {
             style: 'currency',
@@ -183,17 +103,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }).format(number);
     };
 
-    // Toast Notification
-    const showToast = (message) => {
-        const container = document.getElementById('toast-container');
-        const toast = document.createElement('div');
-        toast.className = 'toast';
-        toast.innerHTML = `<i class="fa-solid fa-circle-check"></i><span>${message}</span>`;
-        container.appendChild(toast);
-        setTimeout(() => toast.remove(), 3000);
+    // 3. Helper: Generate Stars HTML
+    const getStarsHTML = (rating) => {
+        let stars = '';
+        for (let i = 1; i <= 5; i++) {
+            if (i <= rating) {
+                stars += '<i class="fa-solid fa-star"></i>';
+            } else if (i - 0.5 <= rating) {
+                stars += '<i class="fa-solid fa-star-half-stroke"></i>';
+            } else {
+                stars += '<i class="fa-regular fa-star"></i>';
+            }
+        }
+        return `<div class="product-rating">${stars} <span>(${rating})</span></div>`;
     };
 
-    // Render Products (Support Filter)
+    // 4. Render Products
     const renderProducts = (data = bookData) => {
         productList.innerHTML = "";
         
@@ -206,13 +131,16 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="product-card">
                 <div class="product-img">
                     ${book.badge ? `<span class="product-badge ${book.badgeType || ''}">${book.badge}</span>` : ''}
-                    <img src="${book.imgSrc}" alt="${book.title}">
+                    <img src="${book.imgSrc}" alt="${book.title}" loading="lazy">
                     <div class="product-overlay">
                         <button class="view-btn" onclick="openDetailModal(${book.id})">Lihat Detail</button>
                     </div>
                 </div>
                 <div class="product-info">
                     <h3 class="product-title">${book.title}</h3>
+                    <div class="product-meta">
+                        ${getStarsHTML(book.rating)}
+                    </div>
                     <div class="product-price">${formatRupiah(book.price)}</div>
                     <button class="add-to-cart-btn" onclick="addToCart(${book.id})">
                         <i class="fa-solid fa-cart-plus"></i> Tambah
@@ -222,7 +150,20 @@ document.addEventListener('DOMContentLoaded', () => {
         `).join('');
     };
 
-    // Render Cart
+    // 5. Toast Notification (Updated)
+    const showToast = (message, type = 'success') => {
+        const container = document.getElementById('toast-container');
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        
+        const icon = type === 'error' ? 'fa-circle-xmark' : 'fa-circle-check';
+        
+        toast.innerHTML = `<i class="fa-solid ${icon}"></i><span>${message}</span>`;
+        container.appendChild(toast);
+        setTimeout(() => toast.remove(), 3000);
+    };
+
+    // 6. Cart Logic
     const renderCart = () => {
         cartCountElement.textContent = cart.reduce((acc, item) => acc + item.qty, 0);
         
@@ -261,7 +202,6 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('studyShelfCart', JSON.stringify(cart));
     };
 
-    // Add to Cart
     window.addToCart = (id) => {
         const existingItem = cart.find(item => item.id === id);
         const book = bookData.find(b => b.id === id);
@@ -276,7 +216,6 @@ document.addEventListener('DOMContentLoaded', () => {
         renderCart();
     };
 
-    // Update Quantity
     window.updateQuantity = (id, change) => {
         const item = cart.find(item => item.id === id);
         if (item) {
@@ -289,13 +228,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Remove from Cart
     window.removeFromCart = (id) => {
         cart = cart.filter(item => item.id !== id);
         renderCart();
     };
 
-    // Open/Close Cart
     const openCart = () => {
         cartSidebar.classList.add('active');
         overlay.classList.add('active');
@@ -306,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
         overlay.classList.remove('active');
     };
 
-    // Open Detail Modal
+    // 7. Modal Logic
     window.openDetailModal = (id) => {
         const book = bookData.find(b => b.id === id);
         if (book) {
@@ -314,6 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
             modalTitle.textContent = book.title;
             modalPrice.textContent = formatRupiah(book.price);
             modalDesc.textContent = book.description;
+            modalRating.textContent = `${book.rating} / 5.0`; // Update Rating Text
             
             modalAddBtn.onclick = () => {
                 addToCart(book.id);
@@ -328,23 +266,23 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.classList.remove('active');
     };
 
-    // --- FUNGSI KLAIM TOKEN (BARU) ---
+    // 8. Claim Token Logic (Updated with Shake Animation)
     window.checkToken = () => {
-        // Ambil input dan ubah jadi huruf besar semua
         const code = tokenInput.value.trim().toUpperCase(); 
+        tokenInput.classList.remove('error-shake'); // Reset animation
         
         if (tokenDatabase.hasOwnProperty(code)) {
             const fileLink = tokenDatabase[code];
             
-            // Sukses
-            claimMsg.style.color = "#10b981"; // Hijau
+            claimMsg.style.color = "#10b981"; 
             claimMsg.innerHTML = "<i class='fa-solid fa-spinner fa-spin'></i> Kode benar! Sedang mengunduh...";
             
-            // Proses Download (Simulasi)
+            showToast("Token Valid! Download dimulai...", "success");
+
             setTimeout(() => {
                 const link = document.createElement('a');
                 link.href = fileLink;
-                link.download = ''; // Trigger download
+                link.download = ''; 
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
@@ -352,19 +290,32 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 1000);
             
         } else {
-            // Gagal
-            claimMsg.style.color = "#ef4444"; // Merah
-            claimMsg.textContent = "Kode Token tidak valid. Silakan cek kembali.";
+            claimMsg.style.color = "#ef4444"; 
+            claimMsg.textContent = "Kode Token tidak valid.";
             
-            // Animasi Getar pada input
-            tokenInput.style.border = "1px solid red";
-            setTimeout(() => tokenInput.style.border = "1px solid #ddd", 500);
+            // Trigger Animasi Shake
+            void tokenInput.offsetWidth; // Trigger reflow
+            tokenInput.classList.add('error-shake');
+            
+            showToast("Token Salah!", "error");
         }
     };
 
+    // 9. Scroll Animation (Intersection Observer)
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
     // --- EVENT LISTENERS ---
     
-    // 1. Search Logic
+    // Search
     searchInput.addEventListener('input', (e) => {
         const keyword = e.target.value.toLowerCase();
         const filteredBooks = bookData.filter(book => 
@@ -376,7 +327,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('[data-category="all"]').classList.add('active');
     });
 
-    // 2. Category Filter Logic
+    // Filter
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             filterBtns.forEach(b => b.classList.remove('active'));
@@ -394,7 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    // 3. Cart & Modal Product Events
+    // UI Events
     cartBtn.addEventListener('click', openCart);
     closeCartBtn.addEventListener('click', closeCart);
     closeModalBtn.addEventListener('click', closeModal);
@@ -402,30 +353,23 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target === modal) closeModal();
     });
 
-    // 4. Claim Modal Events (BARU)
+    // Claim Modal
     if (navClaimBtn) {
         navClaimBtn.addEventListener('click', (e) => {
             e.preventDefault();
             claimModal.classList.add('active');
-            navbar.classList.remove('active'); // Tutup menu mobile jika sedang terbuka
-            tokenInput.value = ""; // Reset input
-            claimMsg.textContent = ""; // Reset pesan
+            navbar.classList.remove('active');
+            tokenInput.value = "";
+            claimMsg.textContent = "";
         });
     }
 
-    if (closeClaimBtn) {
-        closeClaimBtn.addEventListener('click', () => {
-            claimModal.classList.remove('active');
-        });
-    }
+    if (closeClaimBtn) closeClaimBtn.addEventListener('click', () => claimModal.classList.remove('active'));
+    if (claimModal) claimModal.addEventListener('click', (e) => {
+        if (e.target === claimModal) claimModal.classList.remove('active');
+    });
 
-    if (claimModal) {
-        claimModal.addEventListener('click', (e) => {
-            if (e.target === claimModal) claimModal.classList.remove('active');
-        });
-    }
-
-    // Overlay Events (Tutup semua sidebar/modal)
+    // Global Overlay Close
     overlay.addEventListener('click', () => {
         closeCart();
         closeModal();
@@ -437,7 +381,7 @@ document.addEventListener('DOMContentLoaded', () => {
         navbar.classList.toggle('active');
     });
 
-    // Smooth Scroll
+    // Smooth Scroll Link
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -457,10 +401,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Checkout WhatsApp
+    // Checkout
     checkoutBtn.addEventListener('click', () => {
         if (cart.length === 0) {
-            showToast('Keranjang Anda kosong!');
+            showToast('Keranjang Anda kosong!', 'error');
             return;
         }
         const total = cartTotalElement.textContent;
@@ -469,8 +413,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return `- ${book.title} (${item.qty}x)`;
         }).join('\n')}\n\nTotal: ${total}\n\nMohon info pembayaran.`;
         
-        // Ganti nomor HP di sini
-        window.open(`https://wa.me/6281234567890?text=${encodeURIComponent(message)}`, '_blank');
+        window.open(`https://wa.me/6281315731299?text=${encodeURIComponent(message)}`, '_blank');
         
         cart = [];
         renderCart();

@@ -20,11 +20,16 @@
                 <ul>
                     <li><a href="#beranda">Beranda</a></li>
                     <li><a href="#koleksi">Koleksi</a></li>
-                    <li><a href="#fitur">Fitur</a></li> <li><a href="#tentang">Tentang</a></li>
+                    <li><a href="#fitur">Fitur</a></li>
+                    <li><a href="#testimoni">Testimoni</a></li> <li><a href="#tentang">Tentang</a></li>
                 </ul>
             </nav>
 
             <div class="header-icons">
+                <div class="theme-icon" id="theme-btn" title="Ganti Tema">
+                    <i class="fa-solid fa-moon"></i>
+                </div>
+
                 <div class="claim-icon" id="nav-claim-btn" title="Klaim E-Book (Token)">
                     <i class="fa-solid fa-ticket"></i>
                 </div>
@@ -43,15 +48,13 @@
 
     <section id="beranda" class="hero">
         <div class="hero-overlay"></div>
-        <div class="container hero-content">
-            <h1>Jendela Dunia di <br> <span>Genggaman Anda</span></h1>
+        <div class="container hero-content reveal"> <h1>Jendela Dunia di <br> <span>Genggaman Anda</span></h1>
             <p>Akses ribuan e-book berkualitas untuk menunjang pendidikan, karir, dan pengembangan diri Anda. Hemat, praktis, dan instan.</p>
             <a href="#koleksi" class="btn btn-primary">Belanja Sekarang <i class="fa-solid fa-arrow-right"></i></a>
         </div>
     </section>
 
-    <section id="koleksi" class="products section-padding">
-        <div class="container">
+    <section id="koleksi" class="products section-padding reveal"> <div class="container">
             <h2 class="section-title">Koleksi <span>Terpopuler</span></h2>
             <p class="section-subtitle">Pilih buku favoritmu dan mulai membaca hari ini</p>
             
@@ -74,8 +77,7 @@
         </div>
     </section>
 
-    <section id="fitur" class="features">
-        <div class="container">
+    <section id="fitur" class="features reveal"> <div class="container">
             <h2 class="section-title">Fitur <span>Unggulan</span></h2>
             <p class="section-subtitle">Kenapa harus belanja di Study Shelf?</p>
             <div class="feature-grid">
@@ -98,8 +100,40 @@
         </div>
     </section>
 
-    <section id="tentang" class="about section-padding">
-        <div class="container about-container">
+    <section id="testimoni" class="testimonials section-padding reveal" style="background-color: var(--white);">
+        <div class="container">
+            <h2 class="section-title">Kata <span>Mereka</span></h2>
+            <p class="section-subtitle">Pengalaman pembaca setia Study Shelf</p>
+            <div class="testimonial-grid">
+                <div class="testi-card">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p>"Buku Python-nya sangat lengkap untuk pemula. Sekarang saya sudah bisa bikin bot sederhana!"</p>
+                    <div class="user-info">
+                        <h4>Rizky Ramadhan</h4>
+                        <span>Mahasiswa IT</span>
+                    </div>
+                </div>
+                <div class="testi-card">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+                    <p>"Proses klaim tokennya cepet banget. Habis bayar langsung bisa download PDF-nya."</p>
+                    <div class="user-info">
+                        <h4>Siti Aminah</h4>
+                        <span>Freelancer</span>
+                    </div>
+                </div>
+                <div class="testi-card">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p>"Koleksi buku bisnisnya update banget. Sangat membantu untuk referensi usaha saya."</p>
+                    <div class="user-info">
+                        <h4>Budi Santoso</h4>
+                        <span>Pengusaha UMKM</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tentang" class="about section-padding reveal"> <div class="container about-container">
             <div class="about-image">
                 <img src="gambar/Rak Buku.jpeg" alt="Tentang Study Shelf">
             </div>
@@ -171,6 +205,9 @@
                 </div>
                 <div class="modal-info">
                     <h2 id="modal-title">Judul Buku</h2>
+                    <div class="modal-rating" style="color: #f59e0b; margin-bottom: 0.5rem;">
+                        <i class="fa-solid fa-star"></i> <span id="modal-rating-val" style="color: var(--text-dark);"></span>
+                    </div>
                     <h3 id="modal-price">Rp 0</h3>
                     <div class="modal-desc-box">
                         <h4>Deskripsi:</h4>
